@@ -19,4 +19,6 @@ public class BankAccount {
     Long id;
 
     Float balance;
+
+    String currency;
 }

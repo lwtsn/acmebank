@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ContextConfiguration(classes = AccountManagerApplication.class, loader = SpringBootContextLoader.class)
-public class CucumberConfiguration {
+public class CucumberConfigurationTest {
     @Before
     public void setUp() {
         System.out.println("When life gives you cucumbers, make cuceaide");
