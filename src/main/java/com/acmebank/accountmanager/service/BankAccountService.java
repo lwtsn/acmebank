@@ -18,4 +18,8 @@ public class BankAccountService {
     public BankAccount getBankAccountById(Long bankAccountId) throws EntityNotFoundException {
         return bankAccountRepository.findById(bankAccountId).orElseThrow(EntityNotFoundException::new);
     }
+
+    public BankAccount update(BankAccount bankAccount) {
+        return bankAccountRepository.save(bankAccount);
+    }
 }

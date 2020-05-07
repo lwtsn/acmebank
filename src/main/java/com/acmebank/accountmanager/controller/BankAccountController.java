@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BankAccountController {
 
-    private BankAccountService bankAccountService;
+    private final BankAccountService bankAccountService;
 
     BankAccountController(BankAccountService bankAccountService) {
-
         this.bankAccountService = bankAccountService;
     }
-
 
     @GetMapping("/account/{bankAccountNumber}")
     public BankAccount getVersion(@PathVariable Long bankAccountNumber) {
