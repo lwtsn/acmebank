@@ -10,7 +10,7 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
-@Builder
+@Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,5 +26,17 @@ public class BankAccount {
 
     public boolean hasSufficientFundsToTransfer(Float amountToTransfer) {
         return balance >= amountToTransfer;
+    }
+
+    public BankAccount subtractFunds(Float amountToTransfer) {
+        Float updatedBalance = balance - amountToTransfer;
+
+        return this.toBuilder().balance(updatedBalance).build();
+    }
+
+    public BankAccount addFunds(Float amountToTransfer) {
+        Float updatedBalance = balance + amountToTransfer;
+
+        return this.toBuilder().balance(updatedBalance).build();
     }
 }

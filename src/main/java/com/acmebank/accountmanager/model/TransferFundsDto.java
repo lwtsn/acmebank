@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class TransferFundsDto {
-    Long initiatorId;
-    Long benefactorId;
-    Float balance;
+    final Long initiatorId;
+    final Long benefactorId;
+    final Float amountToTransfer;
 }

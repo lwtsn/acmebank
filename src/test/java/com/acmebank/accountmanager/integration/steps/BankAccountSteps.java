@@ -1,31 +1,22 @@
 package com.acmebank.accountmanager.integration.steps;
 
-import io.cucumber.java.en.Given;
+import com.acmebank.accountmanager.model.BankAccount;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
-import java.net.URI;
 
 import static java.lang.String.format;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BankAccountSteps {
 
     @Autowired
     TestRestTemplate restTemplate;
 
-    ResponseEntity<String> response;
-
-    @Given("I am a client")
-    public void iAmAClient() {
-
-    }
+    ResponseEntity<BankAccount> response;
 
     @When("I check the balance for account {int}")
     public void iCheckTheBalanceForAccount(int accountNumber) {
@@ -35,11 +26,12 @@ public class BankAccountSteps {
                 accountNumber
         );
 
-        response = restTemplate.getForEntity(url, String.class);
+        response = restTemplate.getForEntity(url, BankAccount.class);
     }
 
     @Then("I should see the balance is {int} {string}")
     public void iShouldSeeTheBalanceIs(int balance, String currency) {
-        assertTrue(response.getStatusCode().equals(HttpStatus.valueOf(200)));
+        assertEquals(balance, response.getBody().getBalance());
+        assertEquals(currency, response.getBody().getCurrency());
     }
 }
