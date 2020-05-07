@@ -14,15 +14,23 @@ The request must be POSTed and have a JSON payload of
     {  
          initiatorId; //Who is sending the money
 	     benefactorId; //Who is receiving the money
-	     amountToTransfer; //How much is being sen
+	     amountToTransfer; //How much is being sent
     }
 
 Running the tests can be done by running `./mvnw test`
 
 Cucumber tests should run alongside the unit tests,  if not they can be found under `src/test/resources/features/` Intellij should allow you to right click and run each Scenario 
 
+The database can be found at `http://localhost:8080/h2-console` 
+
+Username: `sa` 
+
+Password: `password`
+
 > Notes:
 > - I omitted the concept of a Customer as I felt it would have added    unnecessary complexity
 > - Logging is minimal, I think the application could benefit with more verbose logging, especially when transferring funds
 > - Database interactions are not transactional
 > - I considered adding a transaction log but thought this could be considered a nice to have
+> - Spring Dev tools is enabled, so the application might be quite verbose in places
+> - Running tests will overwrite values in the database
