@@ -12,10 +12,8 @@ public class BankAccountController {
     private BankAccountService bankAccountService;
 
     BankAccountController(BankAccountService bankAccountService) {
-
         this.bankAccountService = bankAccountService;
     }
-
 
     @GetMapping("/account/{bankAccountNumber}")
     public BankAccount getVersion(@PathVariable Long bankAccountNumber) {

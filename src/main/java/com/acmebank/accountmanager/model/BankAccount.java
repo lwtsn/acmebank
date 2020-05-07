@@ -1,7 +1,6 @@
 package com.acmebank.accountmanager.model;
 
-import lombok.AccessLevel;
-import lombok.Getter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Entity;
@@ -11,7 +10,10 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class BankAccount {
 
     @Id
@@ -21,4 +23,8 @@ public class BankAccount {
     Float balance;
 
     String currency;
+
+    public boolean hasSufficientFundsToTransfer(Float amountToTransfer) {
+        return balance >= amountToTransfer;
+    }
 }
