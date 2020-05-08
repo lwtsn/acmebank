@@ -47,7 +47,7 @@ public class TransferFundsUsecase {
         if (!initiatorBankAccount.hasSufficientFundsToTransfer(transferFundsDto.getAmountToTransfer())) {
             throw new InsufficientFundsException(
                     transferFundsDto.getAmountToTransfer(),
-                    transferFundsDto.getAmountToTransfer()
+                    initiatorBankAccount.getBalance()
             );
         }
     }
